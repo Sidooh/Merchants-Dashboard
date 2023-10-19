@@ -12,7 +12,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
         <BrowserRouter>
             <Provider store={store()}>
-                <ThemeProvider defaultTheme={'dark'} storageKey={'merchants-ui-theme'}>
+                <ThemeProvider defaultTheme={'light'} storageKey={'merchants-ui-theme'}>
                     <App />
                 </ThemeProvider>
             </Provider>
