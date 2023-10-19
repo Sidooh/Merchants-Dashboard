@@ -47,7 +47,7 @@ const Login = () => {
             <form className="w-full" onSubmit={form.handleSubmit(handleSubmit)}>
                 <div className={'p-5 h-full max-w-3xl min-w-[30rem] relative shadow-xl'}>
                     <CardHeader>
-                        <CardTitle className={'text-end text-primary/70'}>
+                        <CardTitle className={'text-end font-light text-sm text-slate-400'}>
                             Welcome Back
                             <hr className="mt-3 w-1/2 ms-auto" />
                         </CardTitle>
