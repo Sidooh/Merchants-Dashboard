@@ -76,7 +76,12 @@ export class ErrorBoundary extends Component<PropsWithRef<PropsWithChildren<Erro
     }
 
     componentDidCatch(error: Error, info: ErrorInfo) {
-        this.props.onError?.(error, info);
+        if (info.componentStack) {
+            this.props.onError?.(error, { componentStack: info.componentStack });
+        } else {
+            // Handle the case when componentStack is null or undefined
+            this.props.onError?.(error, { componentStack: 'Component stack not available' });
+        }
     }
 
     componentDidUpdate(prevProps: ErrorBoundaryProps, prevState: ErrorBoundaryState) {
