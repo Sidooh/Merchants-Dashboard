@@ -1,0 +1,192 @@
+import { Link, useNavigate } from 'react-router-dom';
+import Logo from '@/components/common/Logo.tsx';
+import { FaUser, FaX } from 'react-icons/fa6';
+import { useState } from 'react';
+import { MobileNav } from '@/components/MobileNav.tsx';
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu.tsx';
+import { useAppDispatch } from '@/app/store.ts';
+import { logout, reset } from '@/features/auth/authSlice.ts';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar.tsx';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover.tsx';
+import { Button } from '@/components/ui/button.tsx';
+import waffle from '@/assets/images/waffle.svg';
+import { ScrollArea } from '@/components/ui/scroll-area.tsx';
+import { cn } from '@/lib/utils.ts';
+import { ModeToggle } from '@/components/ModeToggle.tsx';
+
+const Waffle = () => {
+    const links = [
+        {
+            avatarText: 'A',
+            title: 'Accounts',
+            link: '/',
+            color: 'blue',
+        },
+        {
+            avatarText: 'E',
+            title: 'Enterprise',
+            link: `/events/event-detail`,
+            disabled: true,
+        },
+        {
+            avatarText: 'N',
+            title: 'Notify',
+            link: '/',
+        },
+        {
+            avatarText: 'P',
+            title: 'Payments',
+            link: '/',
+        },
+        {
+            avatarText: 'P',
+            title: 'Products',
+            link: '/',
+        },
+        {
+            avatarText: 'S',
+            title: 'Savings',
+            link: '/',
+        },
+        {
+            avatarText: 'U',
+            title: 'USSD',
+            link: '/',
+        },
+    ];
+
+    return (
+        <Popover>
+            <PopoverTrigger asChild>
+                <Button size="icon" variant={'ghost'} className={'rounded-full'}>
+                    <img src={waffle} alt="" width={15} height={15} />
+                </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-72">
+                <ScrollArea>
+                    <div className="grid grid-cols-3 gap-y-3">
+                        {links.map((l) => (
+                            <a
+                                key={l.title}
+                                href={l.link}
+                                className={cn('space-y-2 py-2 rounded-lg', {
+                                    'hover:bg-primary/10': !l.disabled,
+                                })}
+                                target={'_blank'}
+                                rel="noreferrer"
+                            >
+                                <Avatar className={'mx-auto'}>
+                                    <AvatarFallback>{l.avatarText}</AvatarFallback>
+                                </Avatar>
+                                <p
+                                    className={cn(`mb-0 font-medium text-truncate text-xs text-center`, {
+                                        'text-gray-800': !l.disabled,
+                                        'text-gray-400': l.disabled,
+                                    })}
+                                >
+                                    {l.title}
+                                </p>
+                            </a>
+                        ))}
+                    </div>
+                </ScrollArea>
+            </PopoverContent>
+        </Popover>
+    );
+};
+
+const Header = () => {
+    const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
+
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+
+    const handleSignOut = () => {
+        dispatch(logout());
+        dispatch(reset());
+        navigate('/login');
+    };
+
+    const user = {
+        name: 'Admin',
+        email: 'international@sidooh.co.ke',
+        image: null,
+    };
+
+    return (
+        <header className="sticky top-0 z-40 border-b bg-background">
+            <div className="container flex h-16 items-center justify-between py-4">
+                <div className="flex gap-6 md:gap-10">
+                    <Link to="/" className="hidden items-center space-x-2 md:flex">
+                        <Logo />
+                    </Link>
+
+                    <button
+                        className="flex items-center space-x-2 md:hidden"
+                        onClick={() => setShowMobileMenu(!showMobileMenu)}
+                    >
+                        {showMobileMenu ? <FaX /> : <Logo />}
+                        <span className="font-bold">Menu</span>
+                    </button>
+                    {showMobileMenu && <MobileNav />}
+                </div>
+
+                <div className={'flex items-center space-x-2'}>
+                    <ModeToggle />
+
+                    <Waffle />
+
+                    <DropdownMenu>
+                        <DropdownMenuTrigger>
+                            <Avatar className={'h-8 w-8'}>
+                                {user.image ? (
+                                    <AvatarImage alt="Picture" src={user.image} />
+                                ) : (
+                                    <AvatarFallback>
+                                        <span className="sr-only">{user.name}</span>
+                                        <FaUser />
+                                    </AvatarFallback>
+                                )}
+                            </Avatar>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                            <div className="flex items-center justify-start gap-2 p-2">
+                                <div className="flex flex-col space-y-1 leading-none">
+                                    {user.name && <p className="font-medium">{user.name}</p>}
+                                    {user.email && (
+                                        <p className="w-[200px] truncate text-sm text-muted-foreground">{user.email}</p>
+                                    )}
+                                </div>
+                            </div>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem asChild>
+                                <Link to="/">Dashboard</Link>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem asChild>
+                                <Link to="/settings">Settings</Link>
+                            </DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem
+                                className="cursor-pointer"
+                                onSelect={(e) => {
+                                    e.preventDefault();
+                                    handleSignOut();
+                                }}
+                            >
+                                Sign out
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                </div>
+            </div>
+        </header>
+    );
+};
+
+export default Header;
