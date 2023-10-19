@@ -6,6 +6,7 @@ import Login from '@/pages/auth/Login';
 import NotFound from '@/pages/errors/NotFound';
 import MainLayout from '@/layouts/MainLayout';
 import Transactions from '@/pages/transactions/Transactions.tsx';
+import Merchants from '@/pages/merchants/Merchants.tsx';
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                 <Route index element={<DefaultDashboard />} />
 
                 <Route path={'/transactions'} element={<Transactions />} />
+                <Route path={'/merchants'} element={<Merchants />} />
             </Route>
 
             <Route path={'*'} element={<NotFound />} />

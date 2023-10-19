@@ -12,7 +12,7 @@ const Transactions = () => {
 
     return (
         <DataTable
-            title={'All Transactions'}
+            title={'All Merchants'}
             columns={columns}
             data={data}
             facetedFilters={[
