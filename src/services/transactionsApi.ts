@@ -3,7 +3,7 @@ import { ApiResponse, Transaction } from '@/lib/types';
 
 const transactionsApi = coreApi.injectEndpoints({
     endpoints: (build) => ({
-        getTransactions: build.query<Transaction[], { days: number }>({
+        getTransactions: build.query<Transaction[], { days?: number }>({
             query: ({ days }) => ({
                 url: '/transactions',
                 params: { days },

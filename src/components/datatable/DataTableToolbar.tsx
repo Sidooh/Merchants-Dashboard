@@ -38,7 +38,6 @@ export function DataTableToolbar<TData>({ table, facetedFilters, globalFilter }:
                     </Button>
                 )}
             </div>
-
             <DataTableViewOptions table={table} />
         </div>
     );

@@ -6,12 +6,13 @@ import { BiMoneyWithdraw } from 'react-icons/bi';
 import { PiLifebuoyDuotone } from 'react-icons/pi';
 
 const Transactions = () => {
-    const { data } = useGetTransactionsQuery({ days: 6 });
+    const { data } = useGetTransactionsQuery({});
 
     if (!data) return <Skeleton className={'h-[700px]'} />;
 
     return (
         <DataTable
+            title={'All Transactions'}
             columns={columns}
             data={data}
             facetedFilters={[

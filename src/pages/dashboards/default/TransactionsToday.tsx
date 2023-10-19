@@ -1,11 +1,11 @@
-import { columns } from '@/pages/transactions/datatable/Columns.tsx';
+import { useGetTransactionsQuery } from '@/services/transactionsApi';
+import { columns } from '@/pages/transactions/datatable/Columns';
+import { DataTable } from '@/components/datatable/DataTable';
+import { Skeleton } from '@/components/ui/skeleton';
 import { BiMoneyWithdraw } from 'react-icons/bi';
 import { PiLifebuoyDuotone } from 'react-icons/pi';
-import { DataTable } from '@/components/datatable/DataTable.tsx';
-import { useGetTransactionsQuery } from '@/services/transactionsApi.ts';
-import { Skeleton } from '@/components/ui/skeleton.tsx';
 
-const DefaultDashboard = () => {
+const TransactionsToday = () => {
     const { data } = useGetTransactionsQuery({ days: 1 });
 
     if (!data) return <Skeleton className={'h-[700px]'} />;
@@ -29,4 +29,4 @@ const DefaultDashboard = () => {
     );
 };
 
-export default DefaultDashboard;
+export default TransactionsToday;

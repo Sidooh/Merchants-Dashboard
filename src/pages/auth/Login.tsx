@@ -47,7 +47,7 @@ const Login = () => {
             <form className="w-full" onSubmit={form.handleSubmit(handleSubmit)}>
                 <div className={'p-5 h-full max-w-3xl min-w-[30rem] relative shadow-xl'}>
                     <CardHeader>
-                        <CardTitle className={'text-end font-light text-sm text-slate-400'}>
+                        <CardTitle className={'text-end font-light text-sm text-gray-600 '}>
                             Welcome Back
                             <hr className="mt-3 w-1/2 ms-auto" />
                         </CardTitle>
@@ -90,11 +90,11 @@ const Login = () => {
                         <Button type={'submit'} disabled={isLoading} className={'w-full bg-primary'}>
                             {isLoading ? (
                                 <>
-                                    <ReloadIcon className="mr-2 h-4 w-4 animate-spin" /> Authenticating...
+                                    Authenticating... <ReloadIcon className="ms-2 h-4 w-4 animate-spin" />
                                 </>
                             ) : (
                                 <>
-                                    <AiOutlineLogin className="mr-2 h-4 w-4" /> Sign In
+                                    Sign In <AiOutlineLogin className="ms-2 h-4 w-4" />
                                 </>
                             )}
                         </Button>
