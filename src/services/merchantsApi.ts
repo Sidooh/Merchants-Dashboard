@@ -8,7 +8,11 @@ const transactionsApi = coreApi.injectEndpoints({
             transformResponse: (val: ApiResponse<Merchant[]>) => val.data,
             providesTags: ['Merchant'],
         }),
+        getMerchantById: build.query<Merchant, number>({
+            query: (id) => `/merchants/${id}`,
+            transformResponse: (val: ApiResponse<Merchant>) => val.data,
+        }),
     }),
 });
 
-export const { useGetMerchantsQuery } = transactionsApi;
+export const { useGetMerchantsQuery, useGetMerchantByIdQuery } = transactionsApi;

@@ -12,7 +12,7 @@ const TransactionsToday = () => {
 
     return (
         <DataTable
-            title={"Today's Merchants"}
+            title={"Today's Transactions"}
             columns={columns}
             data={data}
             facetedFilters={[

@@ -103,7 +103,7 @@ export function DataTable<TData, TValue>({ title, columns, data, facetedFilters 
     return (
         <Card className="rounded-md border-0 p-3 space-y-3">
             {title && (
-                <CardTitle className={'flex items-end flex-col'}>
+                <CardTitle className={'flex items-end flex-col text-gray-700'}>
                     <p className="px-3">{title}</p>
                     <hr className={'w-1/5 mt-2'} />
                 </CardTitle>
@@ -130,7 +130,7 @@ export function DataTable<TData, TValue>({ title, columns, data, facetedFilters 
                                 <TableHead key={header.id}>
                                     {!header.isPlaceholder && (
                                         <div
-                                            className="flex items-center -ml-4 h-8 px-3 data-[state=open]:bg-accent text-secondary-foreground hover:bg-secondary/80"
+                                            className="flex items-center -ml-4 h-8 px-3 data-[state=open]:bg-accent text-secondary-foreground hover:bg-secondary/80 cursor-pointer"
                                             onClick={header.column.getToggleSortingHandler()}
                                         >
                                             <span className={'font-bold text-sm'}>
