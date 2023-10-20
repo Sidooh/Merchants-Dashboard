@@ -60,7 +60,6 @@ const Login = () => {
                                 render={() => (
                                     <FormItem>
                                         <Input
-                                            className={'border-0'}
                                             placeholder="username@sidooh.co.ke"
                                             type={'email'}
                                             {...form.register('email')}
@@ -75,7 +74,6 @@ const Login = () => {
                                 render={() => (
                                     <FormItem>
                                         <Input
-                                            className={'border-0'}
                                             placeholder="********"
                                             type={'password'}
                                             {...form.register('password')}
@@ -105,7 +103,7 @@ const Login = () => {
                                 <div className="divider-content-center">🌟</div>
                             </div>
                             <div className="mt-2">
-                                <div className="text-center text-amber-400">
+                                <div className="text-center text-stone-400">
                                     <i>
                                         <small>{CONFIG.tagline}</small>
                                     </i>
