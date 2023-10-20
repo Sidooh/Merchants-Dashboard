@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 export function Sidebar() {
     return (
-        <div className={cn('pb-12')}>
+        <nav className={'pb-12 fixed w-[12.625rem]'}>
             <div className="space-y-4 py-4">
                 {routes.map((r) => (
                     <div key={r.label} className="px-3 py-2">
@@ -31,6 +31,6 @@ export function Sidebar() {
                     </div>
                 ))}
             </div>
-        </div>
+        </nav>
     );
 }

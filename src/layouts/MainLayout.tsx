@@ -36,16 +36,16 @@ const MainLayout = () => {
                     <Sidebar />
                 </aside>
 
-                <main className="flex w-full flex-1 flex-col overflow-hidden">
+                <main className="min-h-screen relative pb-12">
                     <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => window.location.reload()}>
                         <Suspense fallback={<PageLoader />}>
                             <Outlet />
                         </Suspense>
                     </ErrorBoundary>
+
+                    <Footer />
                 </main>
             </div>
-
-            <Footer />
         </div>
     );
 };
