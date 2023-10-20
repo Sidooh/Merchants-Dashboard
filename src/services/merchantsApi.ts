@@ -1,7 +1,7 @@
 import { coreApi } from '@/services/coreApi';
-import { ApiResponse, Merchant } from '@/lib/types';
+import { ApiResponse, Merchant, MpesaStore } from '@/lib/types';
 
-const transactionsApi = coreApi.injectEndpoints({
+const merchantsApi = coreApi.injectEndpoints({
     endpoints: (build) => ({
         getMerchants: build.query<Merchant[], void>({
             query: () => '/merchants',
@@ -12,7 +12,11 @@ const transactionsApi = coreApi.injectEndpoints({
             query: (id) => `/merchants/${id}`,
             transformResponse: (val: ApiResponse<Merchant>) => val.data,
         }),
+        getMpesaStores: build.query<MpesaStore[], number>({
+            query: (id) => `/merchants/${id}/mpesa-store-accounts`,
+            transformResponse: (val: ApiResponse<MpesaStore[]>) => val.data,
+        }),
     }),
 });
 
-export const { useGetMerchantsQuery, useGetMerchantByIdQuery } = transactionsApi;
+export const { useGetMerchantsQuery, useGetMerchantByIdQuery, useGetMpesaStoresQuery } = merchantsApi;

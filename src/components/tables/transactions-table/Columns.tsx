@@ -1,7 +1,7 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { Transaction } from '@/lib/types.ts';
 import { currencyFormat, getRelativeDateAndTime } from '@/lib/utils.ts';
-import { Actions } from '@/pages/transactions/datatable/Actions.tsx';
+import { Actions } from '@/components/tables/transactions-table/Actions';
 
 export const columns: ColumnDef<Transaction>[] = [
     {

@@ -103,7 +103,7 @@ export function DataTable<TData, TValue>({ title, columns, data, facetedFilters 
     return (
         <Card className="rounded-md border-0 p-3 space-y-3">
             {title && (
-                <CardTitle className={'flex items-end flex-col text-gray-700'}>
+                <CardTitle className={'flex items-end flex-col'}>
                     <p className="px-3">{title}</p>
                     <hr className={'w-1/5 mt-2'} />
                 </CardTitle>

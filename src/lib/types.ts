@@ -49,6 +49,14 @@ export type Merchant = Model & {
     land_mark: string;
 };
 
+export type MpesaStore = Model & {
+    merchant_id: number;
+
+    agent: string;
+    store: string;
+    name: string;
+};
+
 export type Transaction = Model & {
     amount: number;
     status: Status;
