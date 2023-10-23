@@ -1,4 +1,4 @@
-import { CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Form, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoginRequest } from '@/lib/types';
@@ -45,9 +45,9 @@ const Login = () => {
     return (
         <Form {...form}>
             <form className="w-full" onSubmit={form.handleSubmit(handleSubmit)}>
-                <div className={'p-5 h-full max-w-3xl min-w-[30rem] relative shadow-xl'}>
+                <Card className={'p-5 h-full max-w-3xl min-w-[30rem] relative shadow-xl border-0'}>
                     <CardHeader>
-                        <CardTitle className={'text-end font-light text-sm text-gray-600 '}>
+                        <CardTitle className={'text-end text-primary'}>
                             Welcome Back
                             <hr className="mt-3 w-1/2 ms-auto" />
                         </CardTitle>
@@ -111,7 +111,7 @@ const Login = () => {
                             </div>
                         </div>
                     </CardFooter>
-                </div>
+                </Card>
             </form>
         </Form>
     );

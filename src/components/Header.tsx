@@ -19,45 +19,46 @@ import waffle from '@/assets/images/waffle.svg';
 import { ScrollArea } from '@/components/ui/scroll-area.tsx';
 import { cn } from '@/lib/utils.ts';
 import { ModeToggle } from '@/components/ModeToggle.tsx';
+import { CONFIG } from '@/config.ts';
 
 const Waffle = () => {
     const links = [
         {
             avatarText: 'A',
             title: 'Accounts',
-            link: '/',
+            link: CONFIG.services.accounts.dashboard.url,
             color: 'blue',
         },
         {
             avatarText: 'E',
             title: 'Enterprise',
-            link: `/events/event-detail`,
+            link: `/`,
             disabled: true,
         },
         {
             avatarText: 'N',
             title: 'Notify',
-            link: '/',
+            link: CONFIG.services.notify.dashboard.url,
         },
         {
             avatarText: 'P',
             title: 'Payments',
-            link: '/',
+            link: CONFIG.services.payments.dashboard.url,
         },
         {
             avatarText: 'P',
             title: 'Products',
-            link: '/',
+            link: CONFIG.services.products.dashboard.url,
         },
         {
             avatarText: 'S',
             title: 'Savings',
-            link: '/',
+            link: CONFIG.services.savings.dashboard.url,
         },
         {
             avatarText: 'U',
             title: 'USSD',
-            link: '/',
+            link: CONFIG.services.ussd.dashboard.url,
         },
     ];
 
