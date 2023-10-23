@@ -15,7 +15,7 @@ import {
 } from '@tanstack/react-table';
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Card } from '@/components/ui/card.tsx';
+import { Card, CardTitle } from '@/components/ui/card.tsx';
 import { useMemo, useState } from 'react';
 import { DataTablePagination } from '@/components/datatable/DataTablePagination.tsx';
 import { CaretDownIcon, CaretSortIcon, CaretUpIcon } from '@radix-ui/react-icons';
@@ -26,12 +26,13 @@ import { rankItem } from '@tanstack/match-sorter-utils';
 import { Checkbox } from '@/components/ui/checkbox.tsx';
 
 interface DataTableProps<TData, TValue> {
+    title?: string;
     columns: ColumnDef<TData, TValue>[];
     data: TData[];
     facetedFilters?: FacetedFilterType[];
 }
 
-export function DataTable<TData, TValue>({ columns, data, facetedFilters }: DataTableProps<TData, TValue>) {
+export function DataTable<TData, TValue>({ title, columns, data, facetedFilters }: DataTableProps<TData, TValue>) {
     const [sorting, setSorting] = useState<SortingState>([]);
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
     const [globalFilter, setGlobalFilter] = useState('');
@@ -100,7 +101,13 @@ export function DataTable<TData, TValue>({ columns, data, facetedFilters }: Data
     });
 
     return (
-        <Card className="rounded-md border-0 p-3 space-y-5">
+        <Card className="rounded-md border-0 p-3 space-y-3">
+            {title && (
+                <CardTitle className={'flex items-end flex-col'}>
+                    <p className="px-3">{title}</p>
+                    <hr className={'w-1/5 mt-2'} />
+                </CardTitle>
+            )}
             <DataTableToolbar
                 table={table}
                 facetedFilters={facetedFilters}
@@ -123,7 +130,7 @@ export function DataTable<TData, TValue>({ columns, data, facetedFilters }: Data
                                 <TableHead key={header.id}>
                                     {!header.isPlaceholder && (
                                         <div
-                                            className="flex items-center -ml-4 h-8 px-3 data-[state=open]:bg-accent text-secondary-foreground hover:bg-secondary/80"
+                                            className="flex items-center -ml-4 h-8 px-3 data-[state=open]:bg-accent text-secondary-foreground hover:bg-secondary/80 cursor-pointer"
                                             onClick={header.column.getToggleSortingHandler()}
                                         >
                                             <span className={'font-bold text-sm'}>

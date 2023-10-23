@@ -1,6 +1,7 @@
 import { FaChartPie } from 'react-icons/fa6';
 import { GrTransaction } from 'react-icons/gr';
 import { RouteType } from '@/lib/types';
+import { MdSupportAgent } from 'react-icons/md';
 
 const routes: RouteType[] = [
     {
@@ -14,10 +15,15 @@ const routes: RouteType[] = [
         ],
     },
     {
-        label: 'Transactions',
+        label: 'App',
         children: [
             {
-                name: 'All',
+                name: 'Merchants',
+                to: '/merchants',
+                icon: MdSupportAgent,
+            },
+            {
+                name: 'Transactions',
                 to: '/transactions',
                 icon: GrTransaction,
             },

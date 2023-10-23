@@ -1,6 +1,7 @@
 import { IconType } from 'react-icons';
 import { To } from 'react-router-dom';
 import { ComponentType } from 'react';
+import { Status } from '@/lib/enums.ts';
 
 export type RouteChildType = {
     name: string;
@@ -29,15 +30,40 @@ export type LoginRequest = {
 
 export type LoginResponse = { access_token: string };
 
-export type Transaction = {
-    id: 26;
-    amount: 10;
-    status: 10;
+export type Model = {
+    id: number;
+    created_at: Date | string;
+    updated_at: Date | string;
+};
+
+export type Merchant = Model & {
+    account_id: number;
+    float_account_id: number;
+    location_id: number;
+
+    first_name: string;
+    last_name: string;
+    id_number: string;
+    business_name: string;
+    code: number;
+    land_mark: string;
+};
+
+export type MpesaStore = Model & {
+    merchant_id: number;
+
+    agent: string;
+    store: string;
+    name: string;
+};
+
+export type Transaction = Model & {
+    amount: number;
+    status: Status;
     description: string;
     destination: string;
-    merchant: 3;
+    merchant: number;
     product: string;
-    created_at: Date | string;
 };
 
 export type FacetedFilterType = {

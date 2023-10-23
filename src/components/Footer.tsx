@@ -4,7 +4,7 @@ import moment from 'moment';
 const Footer = () => {
     return (
         <footer className="absolute bottom-0 w-full">
-            <div className="container flex justify-between text-xs mt-4 mb-3">
+            <div className="flex justify-between text-xs mt-4 mb-3">
                 <p className="mb-0 text-600">
                     {CONFIG.app.name} |{' '}
                     <a href="/" className={'text-primary'}>

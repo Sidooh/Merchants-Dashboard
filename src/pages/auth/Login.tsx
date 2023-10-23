@@ -1,4 +1,4 @@
-import { CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Form, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoginRequest } from '@/lib/types';
@@ -45,9 +45,9 @@ const Login = () => {
     return (
         <Form {...form}>
             <form className="w-full" onSubmit={form.handleSubmit(handleSubmit)}>
-                <div className={'p-5 h-full max-w-3xl min-w-[30rem] relative shadow-xl'}>
+                <Card className={'p-5 h-full max-w-3xl min-w-[30rem] relative shadow-xl border-0'}>
                     <CardHeader>
-                        <CardTitle className={'text-end text-lg text-primary'}>
+                        <CardTitle className={'text-end text-primary'}>
                             Welcome Back
                             <hr className="mt-3 w-1/2 ms-auto" />
                         </CardTitle>
@@ -60,7 +60,6 @@ const Login = () => {
                                 render={() => (
                                     <FormItem>
                                         <Input
-                                            className={'border-0'}
                                             placeholder="username@sidooh.co.ke"
                                             type={'email'}
                                             {...form.register('email')}
@@ -75,7 +74,6 @@ const Login = () => {
                                 render={() => (
                                     <FormItem>
                                         <Input
-                                            className={'border-0'}
                                             placeholder="********"
                                             type={'password'}
                                             {...form.register('password')}
@@ -90,11 +88,11 @@ const Login = () => {
                         <Button type={'submit'} disabled={isLoading} className={'w-full bg-primary'}>
                             {isLoading ? (
                                 <>
-                                    <ReloadIcon className="mr-2 h-4 w-4 animate-spin" /> Authenticating...
+                                    Authenticating... <ReloadIcon className="ms-2 h-4 w-4 animate-spin" />
                                 </>
                             ) : (
                                 <>
-                                    <AiOutlineLogin className="mr-2 h-4 w-4" /> Sign In
+                                    Sign In <AiOutlineLogin className="ms-2 h-4 w-4" />
                                 </>
                             )}
                         </Button>
@@ -105,7 +103,7 @@ const Login = () => {
                                 <div className="divider-content-center">🌟</div>
                             </div>
                             <div className="mt-2">
-                                <div className="text-center text-amber-400">
+                                <div className="text-center text-stone-400">
                                     <i>
                                         <small>{CONFIG.tagline}</small>
                                     </i>
@@ -113,7 +111,7 @@ const Login = () => {
                             </div>
                         </div>
                     </CardFooter>
-                </div>
+                </Card>
             </form>
         </Form>
     );

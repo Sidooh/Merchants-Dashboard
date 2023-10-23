@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import Logo from '@/components/common/Logo.tsx';
 import { FaUser, FaX } from 'react-icons/fa6';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MobileNav } from '@/components/MobileNav.tsx';
 import {
     DropdownMenu,
@@ -19,45 +19,46 @@ import waffle from '@/assets/images/waffle.svg';
 import { ScrollArea } from '@/components/ui/scroll-area.tsx';
 import { cn } from '@/lib/utils.ts';
 import { ModeToggle } from '@/components/ModeToggle.tsx';
+import { CONFIG } from '@/config.ts';
 
 const Waffle = () => {
     const links = [
         {
             avatarText: 'A',
             title: 'Accounts',
-            link: '/',
+            link: CONFIG.services.accounts.dashboard.url,
             color: 'blue',
         },
         {
             avatarText: 'E',
             title: 'Enterprise',
-            link: `/events/event-detail`,
+            link: `/`,
             disabled: true,
         },
         {
             avatarText: 'N',
             title: 'Notify',
-            link: '/',
+            link: CONFIG.services.notify.dashboard.url,
         },
         {
             avatarText: 'P',
             title: 'Payments',
-            link: '/',
+            link: CONFIG.services.payments.dashboard.url,
         },
         {
             avatarText: 'P',
             title: 'Products',
-            link: '/',
+            link: CONFIG.services.products.dashboard.url,
         },
         {
             avatarText: 'S',
             title: 'Savings',
-            link: '/',
+            link: CONFIG.services.savings.dashboard.url,
         },
         {
             avatarText: 'U',
             title: 'USSD',
-            link: '/',
+            link: CONFIG.services.ussd.dashboard.url,
         },
     ];
 
@@ -106,10 +107,27 @@ const Header = () => {
 
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
+    const [showDropShadow, setShowDropShadow] = useState(false);
+
+    const setDropShadow = () => {
+        const el = document.documentElement;
+        if (el.scrollTop > 0) {
+            setShowDropShadow(true);
+        } else {
+            setShowDropShadow(false);
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener('scroll', setDropShadow);
+
+        return () => window.removeEventListener('scroll', setDropShadow);
+    }, []);
 
     const handleSignOut = () => {
         dispatch(logout());
         dispatch(reset());
+
         navigate('/login');
     };
 
@@ -120,7 +138,11 @@ const Header = () => {
     };
 
     return (
-        <header className="sticky top-0 z-40 border-b bg-background">
+        <header
+            className={cn('sticky top-0 z-40 bg-background', {
+                'shadow-[0_.5rem_.5rem_-.5rem_#0003]': showDropShadow,
+            })}
+        >
             <div className="container flex h-16 items-center justify-between py-4">
                 <div className="flex gap-6 md:gap-10">
                     <Link to="/" className="hidden items-center space-x-2 md:flex">
