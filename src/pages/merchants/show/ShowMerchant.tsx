@@ -11,7 +11,7 @@ const Transactions = ({ merchantId }: { merchantId: number }) => {
 
     if (!data) return <Skeleton className={'h-[500px]'} />;
 
-    return <TransactionsTable transactions={data} />;
+    return <TransactionsTable transactions={data} hideMerchantCol />;
 };
 
 const MpesaStores = ({ merchantId }: { merchantId: number }) => {

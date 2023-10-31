@@ -4,12 +4,22 @@ import { Transaction } from '@/lib/types.ts';
 import { BiMoneyWithdraw } from 'react-icons/bi';
 import { PiLifebuoyDuotone } from 'react-icons/pi';
 
-type TransactionsTableProps = { title?: string; transactions: Transaction[] };
-const TransactionsTable = ({ title = 'Transactions', transactions }: TransactionsTableProps) => {
+type TransactionsTableProps = { title?: string; transactions: Transaction[]; hideMerchantCol?: boolean };
+const TransactionsTable = ({
+    title = 'Transactions',
+    transactions,
+    hideMerchantCol = false,
+}: TransactionsTableProps) => {
+    let cols = columns;
+
+    if (hideMerchantCol) {
+        cols = cols.filter((c) => c.header !== 'Merchant');
+    }
+
     return (
         <DataTable
             title={title}
-            columns={columns}
+            columns={cols}
             data={transactions}
             facetedFilters={[
                 {
