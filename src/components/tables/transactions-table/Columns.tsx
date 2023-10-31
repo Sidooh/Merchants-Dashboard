@@ -12,7 +12,7 @@ export const columns: ColumnDef<Transaction>[] = [
             if (typeof t.merchant !== 'number') {
                 return (
                     <Link to={`/merchants/${t.merchant.id}`} className={'underline'}>
-                        {Str.headline(`${t.merchant.first_name} ${t.merchant.last_name}`)}
+                        {Str.headline(t.merchant.business_name)}
                     </Link>
                 );
             }
