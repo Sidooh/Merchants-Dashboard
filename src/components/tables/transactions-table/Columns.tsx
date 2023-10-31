@@ -1,9 +1,23 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { Transaction } from '@/lib/types.ts';
-import { currencyFormat, getRelativeDateAndTime } from '@/lib/utils.ts';
+import { currencyFormat, getRelativeDateAndTime, Str } from '@/lib/utils.ts';
 import { Actions } from '@/components/tables/transactions-table/Actions';
+import { Link } from 'react-router-dom';
 
 export const columns: ColumnDef<Transaction>[] = [
+    {
+        accessorKey: 'merchant',
+        header: 'Merchant',
+        cell: ({ row: { original: t } }) => {
+            if (typeof t.merchant !== 'number') {
+                return (
+                    <Link to={`/merchants/${t.merchant.id}`} className={'underline'}>
+                        {Str.headline(`${t.merchant.first_name} ${t.merchant.last_name}`)}
+                    </Link>
+                );
+            }
+        },
+    },
     {
         accessorKey: 'destination',
         header: 'Destination',

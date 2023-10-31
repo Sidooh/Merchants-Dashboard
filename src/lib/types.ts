@@ -62,7 +62,7 @@ export type Transaction = Model & {
     status: Status;
     description: string;
     destination: string;
-    merchant: number;
+    merchant: number | Merchant;
     product: string;
 };
 
