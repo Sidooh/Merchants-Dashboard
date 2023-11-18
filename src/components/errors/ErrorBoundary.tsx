@@ -88,12 +88,12 @@ export class ErrorBoundary extends Component<PropsWithRef<PropsWithChildren<Erro
         const { error } = this.state;
         const { resetKeys } = this.props;
 
-        // There's an edge case where if the thing that triggered the error
+        // There's an edge case where if the thing that triggered the errors
         // happens to *also* be in the resetKeys array, we'd end up resetting
-        // the error boundary immediately. This would likely trigger a second
-        // error to be thrown.
+        // the errors boundary immediately. This would likely trigger a second
+        // errors to be thrown.
         // So we make sure that we don't check the resetKeys on the first call
-        // of cDU after the error is set
+        // of cDU after the errors is set
 
         if (error !== null && prevState.error !== null && changedArray(prevProps.resetKeys, resetKeys)) {
             this.props.onResetKeysChange?.(prevProps.resetKeys, resetKeys);
@@ -119,7 +119,7 @@ export class ErrorBoundary extends Component<PropsWithRef<PropsWithChildren<Erro
                 return <FallbackComponent {...props} />;
             } else {
                 throw new Error(
-                    'react-error-boundary requires either a fallback, fallbackRender, or FallbackComponent prop'
+                    'react-errors-boundary requires either a fallback, fallbackRender, or FallbackComponent prop'
                 );
             }
         }

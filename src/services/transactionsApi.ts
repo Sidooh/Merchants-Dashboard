@@ -11,7 +11,12 @@ const transactionsApi = coreApi.injectEndpoints({
             transformResponse: (val: ApiResponse<Transaction[]>) => val.data,
             providesTags: ['Transaction'],
         }),
+        getTransaction: build.query<Transaction, number>({
+            query: (id) => `/transactions/${id}`,
+            transformResponse: (val: ApiResponse<Transaction>) => val.data,
+            providesTags: ['Transaction'],
+        }),
     }),
 });
 
-export const { useGetTransactionsQuery } = transactionsApi;
+export const { useGetTransactionsQuery, useGetTransactionQuery } = transactionsApi;

@@ -8,6 +8,7 @@ import MainLayout from '@/layouts/MainLayout';
 import Transactions from '@/pages/transactions/Transactions.tsx';
 import Merchants from '@/pages/merchants/Merchants.tsx';
 import ShowMerchant from '@/pages/merchants/show/ShowMerchant.tsx';
+import TransactionDetails from '@/pages/transactions/show/TransactionDetails.tsx';
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                 <Route index element={<DefaultDashboard />} />
 
                 <Route path={'/transactions'} element={<Transactions />} />
+                <Route path={'/transactions/:id'} element={<TransactionDetails />} />
 
                 <Route path={'/merchants'} element={<Merchants />} />
                 <Route path={'/merchants/:id'} element={<ShowMerchant />} />

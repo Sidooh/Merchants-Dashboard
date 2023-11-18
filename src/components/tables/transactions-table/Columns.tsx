@@ -3,6 +3,7 @@ import { Transaction } from '@/lib/types.ts';
 import { currencyFormat, getRelativeDateAndTime, Str } from '@/lib/utils.ts';
 import { Actions } from '@/components/tables/transactions-table/Actions';
 import { Link } from 'react-router-dom';
+import StatusBadge from '@/components/common/StatusBadge.tsx';
 
 export const columns: ColumnDef<Transaction>[] = [
     {
@@ -19,12 +20,15 @@ export const columns: ColumnDef<Transaction>[] = [
         },
     },
     {
-        accessorKey: 'destination',
-        header: 'Destination',
-    },
-    {
         accessorKey: 'description',
         header: 'Description',
+        cell: ({ row: { original } }) => (
+            <span>
+                <p>{original.description}</p>
+                <small>{original.destination}</small>
+            </span>
+        ),
+        accessorFn: (originalRow) => `${originalRow.description} ${originalRow.destination}`,
     },
     {
         accessorKey: 'amount',
@@ -32,8 +36,9 @@ export const columns: ColumnDef<Transaction>[] = [
         cell: ({ row }) => currencyFormat(row.original.amount),
     },
     {
-        accessorKey: 'product',
-        header: 'Product',
+        accessorKey: 'status',
+        header: 'Status',
+        cell: ({ row }) => <StatusBadge status={row.original.status} />,
         filterFn: (row, id, value) => value.includes(row.getValue(id)),
     },
     {

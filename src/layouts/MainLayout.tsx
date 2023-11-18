@@ -1,7 +1,7 @@
 import { Suspense, useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import { ErrorBoundary } from '@/components/error/ErrorBoundary';
-import ErrorFallback from '@/components/error/ErrorFallback';
+import { ErrorBoundary } from '@/components/errors/ErrorBoundary';
+import ErrorFallback from '@/components/errors/ErrorFallback';
 import PageLoader from '@/components/loaders/PageLoader';
 import { Sidebar } from '@/components/Sidebar';
 import Header from '@/components/Header';

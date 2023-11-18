@@ -27,7 +27,7 @@ export const authAPI = {
                     throw new Error('Something went wrong!');
                 }
             } else {
-                console.error('Unexpected error:', err);
+                console.error('Unexpected errors:', err);
             }
         }
     },

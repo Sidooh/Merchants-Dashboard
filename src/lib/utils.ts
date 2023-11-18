@@ -2,6 +2,7 @@ import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import Swal, { SweetAlertOptions } from 'sweetalert2';
 import moment from 'moment';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
@@ -95,3 +96,17 @@ export const Str = {
         return str.charAt(0).toUpperCase() + str.slice(1);
     },
 };
+
+/**
+ * Type predicate to narrow an unknown error to `FetchBaseQueryError`
+ */
+export function isFetchBaseQueryError(error: unknown): error is FetchBaseQueryError {
+    return typeof error === 'object' && error != null && 'status' in error;
+}
+
+/**
+ * Type predicate to narrow an unknown error to an object with a string 'message' property
+ */
+export function isErrorWithMessage(error: unknown): error is { message: string } {
+    return typeof error === 'object' && error != null && 'message' in error && typeof error.message === 'string';
+}
