@@ -3,15 +3,17 @@ import { Skeleton } from '@/components/ui/skeleton.tsx';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card.tsx';
 import { Separator } from '@/components/ui/separator.tsx';
 import { Str } from '@/lib/utils.ts';
+import { Link } from 'react-router-dom';
+import { CONFIG } from '@/config.ts';
 
 type DetailsProps = {
     id: number;
 };
 
 const Details = ({ id }: DetailsProps) => {
-    const { data } = useGetMerchantByIdQuery(id);
+    const { data: merchant } = useGetMerchantByIdQuery(id);
 
-    if (!data) return <Skeleton className={'h-[200px]'} />;
+    if (!merchant) return <Skeleton className={'h-[200px]'} />;
 
     return (
         <Card>
@@ -22,22 +24,29 @@ const Details = ({ id }: DetailsProps) => {
                 <div className="flex h-5 items-center justify-evenly space-x-4 text-sm">
                     <div className={'space-y-2'}>
                         <h3 className={'text-muted-foreground'}>Name</h3>
-                        <p>{Str.headline(`${data.first_name} ${data.last_name}`)}</p>
+                        <Link
+                            to={`${CONFIG.services.accounts.dashboard.url}/${merchant.account_id}`}
+                            target={'_blank'}
+                            className={'underline text-primary'}
+                        >
+                            {Str.headline(`${merchant.first_name} ${merchant.last_name}`)} -{' '}
+                            <small className={'text-muted-foreground'}>{merchant.account_id}</small>
+                        </Link>
                     </div>
                     <Separator orientation="vertical" />
                     <div className={'space-y-2'}>
                         <h3 className={'text-muted-foreground'}>Business Name</h3>
-                        <p>{data.business_name}</p>
+                        <p>{merchant.business_name}</p>
                     </div>
                     <Separator orientation="vertical" />
                     <div className={'space-y-2'}>
                         <h3 className={'text-muted-foreground'}>National ID</h3>
-                        <p>{data.id_number}</p>
+                        <p>{merchant.id_number}</p>
                     </div>
                     <Separator orientation="vertical" />
                     <div className={'space-y-2'}>
                         <h3 className={'text-muted-foreground'}>Code</h3>
-                        <p>{data.code}</p>
+                        <p>{merchant.code}</p>
                     </div>
                 </div>
             </CardContent>

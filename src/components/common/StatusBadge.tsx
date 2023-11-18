@@ -24,19 +24,25 @@ type StatusChipType = {
 const StatusBadge = ({ status, statuses = [], onStatusChange }: StatusChipType) => {
     if (!status) return <p>N/A</p>;
 
-    let Icon: IconType | undefined = undefined;
+    const getIcon = (s: Status) => {
+        let Icon: IconType | undefined = undefined;
 
-    if ([Status.COMPLETED, Status.ACTIVE, Status.PAID].includes(status)) {
-        Icon = FaCheck;
-    } else if (status === Status.PENDING) {
-        Icon = FaHourglassStart;
-    } else if (status === Status.REFUNDED) {
-        Icon = FaCircleInfo;
-    } else if ([Status.FAILED, Status.INACTIVE].includes(status)) {
-        Icon = FaCircleExclamation;
-    } else if ([Status.EXPIRED].includes(status)) {
-        Icon = FaCalendarXmark;
-    }
+        if ([Status.COMPLETED, Status.ACTIVE, Status.PAID].includes(s)) {
+            Icon = FaCheck;
+        } else if (s === Status.PENDING) {
+            Icon = FaHourglassStart;
+        } else if (s === Status.REFUNDED) {
+            Icon = FaCircleInfo;
+        } else if ([Status.FAILED, Status.INACTIVE].includes(s)) {
+            Icon = FaCircleExclamation;
+        } else if ([Status.EXPIRED].includes(s)) {
+            Icon = FaCalendarXmark;
+        }
+
+        return Icon;
+    };
+
+    const Icon = getIcon(status);
 
     const BadgeEl = (
         <Badge
@@ -53,25 +59,39 @@ const StatusBadge = ({ status, statuses = [], onStatusChange }: StatusChipType) 
         </Badge>
     );
 
-    if (statuses && statuses?.length > 0 && onStatusChange)
+    if (statuses && statuses?.length > 0 && typeof onStatusChange === 'function') {
+        statuses = statuses?.filter((s) => s !== status);
+
         return (
             <DropdownMenu>
-                <DropdownMenuTrigger asChild>{BadgeEl}</DropdownMenuTrigger>
+                <DropdownMenuTrigger>{BadgeEl}</DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56">
-                    <DropdownMenuLabel>Appearance</DropdownMenuLabel>
+                    <DropdownMenuLabel>Change Status</DropdownMenuLabel>
                     <DropdownMenuSeparator />
-                    {statuses.map((s) => (
-                        <DropdownMenuCheckboxItem
-                            key={s}
-                            checked={s === status}
-                            onCheckedChange={(checked) => checked && onStatusChange(s)}
-                        >
-                            {s}
-                        </DropdownMenuCheckboxItem>
-                    ))}
+                    {statuses.map((s) => {
+                        const Icon = getIcon(s);
+                        return (
+                            <DropdownMenuCheckboxItem
+                                key={s}
+                                checked={s === status}
+                                className={cn('space-x-1', {
+                                    'text-[rgb(100,250,50)]': [Status.COMPLETED, Status.ACTIVE, Status.PAID].includes(
+                                        s
+                                    ),
+                                    'text-[rgb(245,183,0)]': s === Status.PENDING,
+                                    'text-[rgb(244,46,0)]': [Status.FAILED, Status.INACTIVE].includes(s),
+                                    'text-[rgb(49,199,249)]': s === Status.REFUNDED,
+                                })}
+                                onCheckedChange={(checked) => checked && onStatusChange(s)}
+                            >
+                                {Icon && <Icon />} <span>{s}</span>
+                            </DropdownMenuCheckboxItem>
+                        );
+                    })}
                 </DropdownMenuContent>
             </DropdownMenu>
         );
+    }
 
     return BadgeEl;
 };
