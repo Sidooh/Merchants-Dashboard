@@ -4,6 +4,8 @@ import { currencyFormat, getRelativeDateAndTime, Str } from '@/lib/utils.ts';
 import { Actions } from '@/components/tables/transactions-table/Actions';
 import { Link } from 'react-router-dom';
 import StatusBadge from '@/components/common/StatusBadge.tsx';
+import { Status } from '@/lib/enums.ts';
+import Latency from '@/components/Latency.tsx';
 
 export const columns: ColumnDef<Transaction>[] = [
     {
@@ -55,6 +57,12 @@ export const columns: ColumnDef<Transaction>[] = [
                 </>
             );
         },
+    },
+    {
+        accessorKey: 'latency',
+        header: 'Latency',
+        cell: ({ row: { original: tx } }) =>
+            tx.status === Status.PENDING ? '-' : <Latency from={tx.created_at} to={tx.updated_at} />,
     },
     {
         id: 'actions',

@@ -1,8 +1,6 @@
 import { Status } from '@/lib/enums.ts';
 import { Badge } from '@/components/ui/badge.tsx';
-import { FaCalendarXmark, FaCheck, FaCircleExclamation, FaCircleInfo, FaHourglassStart } from 'react-icons/fa6';
-import { IconType } from 'react-icons';
-import { cn } from '@/lib/utils.ts';
+import { cn, getStatusIcon } from '@/lib/utils.ts';
 import {
     DropdownMenu,
     DropdownMenuCheckboxItem,
@@ -24,25 +22,7 @@ type StatusChipType = {
 const StatusBadge = ({ status, statuses = [], onStatusChange }: StatusChipType) => {
     if (!status) return <p>N/A</p>;
 
-    const getIcon = (s: Status) => {
-        let Icon: IconType | undefined = undefined;
-
-        if ([Status.COMPLETED, Status.ACTIVE, Status.PAID].includes(s)) {
-            Icon = FaCheck;
-        } else if (s === Status.PENDING) {
-            Icon = FaHourglassStart;
-        } else if (s === Status.REFUNDED) {
-            Icon = FaCircleInfo;
-        } else if ([Status.FAILED, Status.INACTIVE].includes(s)) {
-            Icon = FaCircleExclamation;
-        } else if ([Status.EXPIRED].includes(s)) {
-            Icon = FaCalendarXmark;
-        }
-
-        return Icon;
-    };
-
-    const Icon = getIcon(status);
+    const Icon = getStatusIcon(status);
 
     const BadgeEl = (
         <Badge
@@ -69,7 +49,7 @@ const StatusBadge = ({ status, statuses = [], onStatusChange }: StatusChipType) 
                     <DropdownMenuLabel>Change Status</DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     {statuses.map((s) => {
-                        const Icon = getIcon(s);
+                        const Icon = getStatusIcon(s);
                         return (
                             <DropdownMenuCheckboxItem
                                 key={s}

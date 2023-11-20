@@ -3,6 +3,9 @@ import { twMerge } from 'tailwind-merge';
 import Swal, { SweetAlertOptions } from 'sweetalert2';
 import moment from 'moment';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
+import { Status } from '@/lib/enums.ts';
+import { FaCalendarXmark, FaCheck, FaCircleExclamation, FaCircleInfo, FaHourglassStart } from 'react-icons/fa6';
+import { IconType } from 'react-icons';
 
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
@@ -110,3 +113,21 @@ export function isFetchBaseQueryError(error: unknown): error is FetchBaseQueryEr
 export function isErrorWithMessage(error: unknown): error is { message: string } {
     return typeof error === 'object' && error != null && 'message' in error && typeof error.message === 'string';
 }
+
+export function getUniquePropertyValues<T>(array: T[], propertyName: keyof T): T[keyof T][] {
+    const uniqueValues: Set<T[keyof T]> = new Set();
+
+    array.forEach((item) => {
+        uniqueValues.add(item[propertyName]);
+    });
+
+    return Array.from(uniqueValues);
+}
+
+export const getStatusIcon = (status: Status): IconType | undefined => {
+    if ([Status.COMPLETED, Status.ACTIVE, Status.PAID].includes(status)) return FaCheck;
+    if ([Status.FAILED, Status.INACTIVE].includes(status)) return FaCircleExclamation;
+    if (status === Status.PENDING) return FaHourglassStart;
+    if (status === Status.REFUNDED) return FaCircleInfo;
+    if (status === Status.EXPIRED) return FaCalendarXmark;
+};
