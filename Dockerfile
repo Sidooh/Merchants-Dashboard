@@ -17,7 +17,7 @@ COPY package.json yarn.lock .yarnrc.yml vite.config.ts tsconfig.json tsconfig.no
 COPY .yarn/releases/ ./.yarn/releases/
 COPY src/ ./src/
 
-RUN yarn
+RUN yarn install --immutable
 RUN yarn run build
 
 

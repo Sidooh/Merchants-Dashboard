@@ -27,11 +27,11 @@ cloud-sql-proxy
 
 # yarn v2
 .yarn/*
+!.yarn/cache
 !.yarn/patches
 !.yarn/plugins
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
-.pnp.*
 
 src/components/ui/*.tsx

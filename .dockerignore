@@ -1,8 +1,6 @@
 .env
 
 dist
-node_modules
-
 cloud-sql-proxy
 
 # yarn v2
@@ -14,3 +12,5 @@ cloud-sql-proxy
 !.yarn/versions
 
 .idea
+
+y.hide
