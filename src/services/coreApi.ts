@@ -4,7 +4,7 @@ import { RootState } from '@/app/store';
 
 export const coreApi = createApi({
     reducerPath: 'coreApi',
-    tagTypes: ['Merchant', 'Transaction'],
+    tagTypes: ['EarningAccount', 'Merchant', 'Transaction'],
     keepUnusedDataFor: 60 * 7, //  Seven Minutes
     baseQuery: fetchBaseQuery({
         baseUrl: CONFIG.services.merchants.api.url,

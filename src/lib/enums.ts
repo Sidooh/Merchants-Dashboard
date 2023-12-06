@@ -8,3 +8,8 @@ export enum Status {
     PENDING = 'PENDING',
     REFUNDED = 'REFUNDED',
 }
+
+export enum EarningAccountType {
+    CASHBACK = 'CASHBACK',
+    COMMISSION = 'COMMISSION',
+}

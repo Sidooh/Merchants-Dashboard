@@ -9,6 +9,7 @@ import { Status } from '@/lib/enums.ts';
 import Latency from '@/components/Latency.tsx';
 import { currencyFormat } from '@/lib/utils.ts';
 import { Separator } from '@/components/ui/separator.tsx';
+import corner2 from '@/assets/images/icons/spot-illustrations/corner-2.png';
 
 const TransactionDetails = () => {
     const { id } = useParams();
@@ -20,12 +21,13 @@ const TransactionDetails = () => {
 
     return (
         <section className={'space-y-3'}>
-            <Card>
+            <Card className={'relative'}>
+                <div className="bg-card-holder" style={{ backgroundImage: `url(${corner2})` }} />
                 <CardHeader>
                     <CardTitle>Transaction: #{transaction.id}</CardTitle>
                     <CardDescription>{moment(transaction.created_at).format('MMM Do, Y, HH:mm A')}</CardDescription>
-                    <span className={'absolute top-0 end-0 pe-3'}>
-                        <Latency from={transaction.created_at} to={transaction.updated_at} />
+                    <span className={'absolute top-0 end-0 pe-6 pt-3 text-xs'}>
+                        Latency <Latency from={transaction.created_at} to={transaction.updated_at} />
                     </span>
                     <hr />
                 </CardHeader>

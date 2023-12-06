@@ -163,7 +163,7 @@ export function DataTable<TData, TValue>({ title, columns, data, facetedFilters 
                         ))
                     ) : (
                         <TableRow>
-                            <TableCell colSpan={columns.length} className="h-24 text-center">
+                            <TableCell colSpan={table.getAllColumns().length} className="h-24 text-center">
                                 No results.
                             </TableCell>
                         </TableRow>

@@ -1,7 +1,7 @@
 import { IconType } from 'react-icons';
 import { To } from 'react-router-dom';
 import { ComponentType } from 'react';
-import { Status } from '@/lib/enums.ts';
+import { EarningAccountType, Status } from '@/lib/enums.ts';
 
 export type RouteChildType = {
     name: string;
@@ -34,6 +34,12 @@ export type Model = {
     id: number;
     created_at: Date | string;
     updated_at: Date | string;
+};
+
+export type EarningAccount = Model & {
+    account_id: number;
+    type: EarningAccountType;
+    amount: number;
 };
 
 export type Merchant = Model & {

@@ -2575,6 +2575,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"countup.js@npm:^2.8.0":
+  version: 2.8.0
+  resolution: "countup.js@npm:2.8.0"
+  checksum: 6681de9de9acd0d65b91183af280a462f2fbbc19ac5a90d30ea94e388f12b0d1cc7fa2b63b6bb83adc9dc38f938cd2a41f727a0b2ae7edf0d82f4b2ccb51e98c
+  languageName: node
+  linkType: hard
+
 "cross-spawn@npm:^7.0.0, cross-spawn@npm:^7.0.2, cross-spawn@npm:^7.0.3":
   version: 7.0.3
   resolution: "cross-spawn@npm:7.0.3"
@@ -4381,6 +4388,7 @@ __metadata:
     postcss: "npm:^8.4.31"
     prettier: "npm:3.0.3"
     react: "npm:^18.2.0"
+    react-countup: "npm:^6.5.0"
     react-dom: "npm:^18.2.0"
     react-hook-form: "npm:^7.47.0"
     react-icons: "npm:^4.11.0"
@@ -5104,6 +5112,17 @@ __metadata:
   version: 1.2.3
   resolution: "queue-microtask@npm:1.2.3"
   checksum: 72900df0616e473e824202113c3df6abae59150dfb73ed13273503127235320e9c8ca4aaaaccfd58cf417c6ca92a6e68ee9a5c3182886ae949a768639b388a7b
+  languageName: node
+  linkType: hard
+
+"react-countup@npm:^6.5.0":
+  version: 6.5.0
+  resolution: "react-countup@npm:6.5.0"
+  dependencies:
+    countup.js: "npm:^2.8.0"
+  peerDependencies:
+    react: ">= 16.3.0"
+  checksum: 42ad385e2fa14ffef709e9892f47288afedfd32ffd7406838e05042f186bdf71fc42ce2ee9246b075fc293f795d4209f484ca0d07a602d8dff9c101a5da9bd4d
   languageName: node
   linkType: hard
 

@@ -94,3 +94,18 @@
   color: #9da9bb;
   white-space: nowrap;
 }
+
+.bg-card-holder {
+  background-size: contain;
+  background-position: right;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  will-change: transform,opacity,filter;
+  backface-visibility: hidden;
+  background-repeat: no-repeat;
+  z-index: 0;
+  width: 100%;
+  min-height: 100%;
+}
