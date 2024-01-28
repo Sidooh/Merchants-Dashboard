@@ -40,6 +40,11 @@ const Details = ({ id }: DetailsProps) => {
                     </div>
                     <Separator orientation="vertical" />
                     <div className={'space-y-2'}>
+                        <h3 className={'text-muted-foreground'}>Phone</h3>
+                        <p>{merchant.phone}</p>
+                    </div>
+                    <Separator orientation="vertical" />
+                    <div className={'space-y-2'}>
                         <h3 className={'text-muted-foreground'}>National ID</h3>
                         <p>{merchant.id_number}</p>
                     </div>

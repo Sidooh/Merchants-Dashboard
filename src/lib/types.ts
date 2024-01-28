@@ -50,6 +50,8 @@ export type Merchant = Model & {
     first_name: string;
     last_name: string;
     id_number: string;
+    phone: string;
+
     business_name: string;
     code: number;
     land_mark: string;

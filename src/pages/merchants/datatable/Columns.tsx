@@ -14,6 +14,10 @@ export const columns: ColumnDef<Merchant>[] = [
         header: 'Business',
     },
     {
+        accessorKey: 'phone',
+        header: 'Phone',
+    },
+    {
         accessorKey: 'id_number',
         header: 'National ID',
     },
