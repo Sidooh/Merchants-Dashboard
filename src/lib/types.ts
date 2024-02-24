@@ -65,6 +65,14 @@ export type MpesaStore = Model & {
     name: string;
 };
 
+export type Payment = Model & {
+    amount: number;
+    charge: number;
+    status: Status;
+    description: string;
+    destination: { [key: string]: string };
+};
+
 export type Transaction = Model & {
     amount: number;
     status: Status;
@@ -72,6 +80,7 @@ export type Transaction = Model & {
     destination: string;
     merchant: number | Merchant;
     product: string;
+    payment: Payment;
 };
 
 export type FacetedFilterType = {

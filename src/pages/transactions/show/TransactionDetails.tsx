@@ -68,6 +68,55 @@ const TransactionDetails = () => {
                     </div>
                 </CardContent>
             </Card>
+
+            <Card>
+                <CardHeader>
+                    <CardTitle>Payment</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    {transaction.payment ? (
+                        <div className="flex h-10 items-center justify-between space-x-4 text-sm">
+                            <div>
+                                <small className={'text-muted-foreground'}>Description</small>
+                                <h3>{transaction.payment.description}</h3>
+                            </div>
+                            <Separator orientation="vertical" />
+                            <div>
+                                <small className={'text-muted-foreground'}>Amount</small>
+                                <h3>{currencyFormat(transaction.payment.amount)}</h3>
+                                <p>
+                                    <span>Charge: </span>
+                                    {currencyFormat(transaction.payment.charge)}
+                                </p>
+                            </div>
+                            <Separator orientation="vertical" />
+                            <div>
+                                <small className={'text-muted-foreground'}>Destination</small>
+                                <ul>
+                                    {Object.keys(transaction.payment.destination).map((key, index) => (
+                                        <li key={index}>
+                                            <strong>{key}: </strong>
+                                            {transaction.payment.destination[key]}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                            <Separator orientation="vertical" />
+                            <div>
+                                <small className={'text-muted-foreground'}>Status</small>
+                                <h3>
+                                    <StatusBadge
+                                        status={transaction.payment.status}
+                                        statuses={[Status.COMPLETED, Status.FAILED, Status.PENDING, Status.REFUNDED]}
+                                    />
+                                </h3>
+                            </div>
+                        </div>
+                    ) : (
+                        <small className={'text-muted-foreground'}>No Data</small>
+                    )}
+                </CardContent>
+            </Card>
         </section>
     );
 };
