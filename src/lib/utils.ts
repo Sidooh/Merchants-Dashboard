@@ -29,15 +29,14 @@ export const decodeJWT = (token: string) => {
 };
 
 export const toast = async (options: SweetAlertOptions = {}) => {
-    const defaultOptions: SweetAlertOptions = {
+    const mergedOptions: SweetAlertOptions = {
+        ...options,
         icon: 'success',
         toast: true,
         position: 'bottom-right',
         showConfirmButton: false,
         timer: 7000,
     };
-
-    const mergedOptions: SweetAlertOptions = { ...defaultOptions, ...options };
 
     await Swal.fire(mergedOptions);
 };

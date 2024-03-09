@@ -11,7 +11,7 @@ import { ThemeProvider } from '@/components/ThemeProvider.tsx';
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
         <BrowserRouter>
-            <Provider store={store()}>
+            <Provider store={store}>
                 <ThemeProvider defaultTheme={'light'} storageKey={'merchants-ui-theme'}>
                     <App />
                 </ThemeProvider>

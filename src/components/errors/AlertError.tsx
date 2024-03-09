@@ -1,9 +1,9 @@
-import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query/react';
 import { SerializedError } from '@reduxjs/toolkit';
 import { forwardRef, HTMLAttributes, useEffect, useState } from 'react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert.tsx';
 import { cn, isErrorWithMessage, isFetchBaseQueryError } from '@/lib/utils.ts';
 import { MdError } from 'react-icons/md';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query/react';
 
 interface ServerErrorProps extends HTMLAttributes<HTMLButtonElement> {
     error?: FetchBaseQueryError | SerializedError | string;

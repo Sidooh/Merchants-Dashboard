@@ -3,16 +3,16 @@ import { ApiResponse, Transaction } from '@/lib/types';
 
 const transactionsApi = coreApi.injectEndpoints({
     endpoints: (build) => ({
-        getTransactions: build.query<Transaction[], { days?: number; merchants?: number }>({
-            query: ({ days, merchants }) => ({
+        getTransactions: build.query({
+            query: ({ days, merchants }: { days?: number; merchants?: number }) => ({
                 url: '/transactions',
                 params: { days, merchants },
             }),
             transformResponse: (val: ApiResponse<Transaction[]>) => val.data,
             providesTags: ['Transaction'],
         }),
-        getTransaction: build.query<Transaction, number>({
-            query: (id) => `/transactions/${id}`,
+        getTransaction: build.query({
+            query: (id: number) => `/transactions/${id}`,
             transformResponse: (val: ApiResponse<Transaction>) => val.data,
             providesTags: ['Transaction'],
         }),
