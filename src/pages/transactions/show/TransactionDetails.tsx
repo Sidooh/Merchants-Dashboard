@@ -30,7 +30,7 @@ const TransactionDetails = () => {
                         Latency <Latency from={transaction.created_at} to={transaction.updated_at} />
                     </span>
                 </CardHeader>
-                <Separator className={'w-1/2 mx-auto h-1 md:mb-7'} />
+                <Separator className={'w-1/2 mx-auto h-[1px] md:mb-7'} />
                 <CardContent>
                     <div className="flex h-12 items-center justify-between space-x-4 text-sm">
                         <div className={'flex flex-col'}>
@@ -105,10 +105,7 @@ const TransactionDetails = () => {
                             <div>
                                 <small className={'text-muted-foreground'}>Status</small>
                                 <h3>
-                                    <StatusBadge
-                                        status={transaction.payment.status}
-                                        statuses={[Status.COMPLETED, Status.FAILED, Status.PENDING, Status.REFUNDED]}
-                                    />
+                                    <StatusBadge status={transaction.payment.status} />
                                 </h3>
                             </div>
                         </div>
