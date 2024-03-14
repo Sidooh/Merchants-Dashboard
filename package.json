@@ -67,5 +67,5 @@
     "typescript": "^5.4.2",
     "vite": "5.0.12"
   },
-  "packageManager": "yarn@4.1.0"
+  "packageManager": "yarn@4.1.1"
 }

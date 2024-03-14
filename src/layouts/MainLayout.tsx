@@ -31,8 +31,8 @@ const MainLayout = () => {
         <div className="flex min-h-screen flex-col space-y-6">
             <Header />
 
-            <div className="container grid flex-1 gap-12 md:grid-cols-[200px_1fr]">
-                <aside>
+            <div className="px-3 lg:px-0 lg:container lg:grid flex-1 gap-12 md:grid-cols-[200px_1fr]">
+                <aside className={'hidden md:block'}>
                     <Sidebar />
                 </aside>
 

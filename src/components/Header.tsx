@@ -20,6 +20,7 @@ import { ScrollArea } from '@/components/ui/scroll-area.tsx';
 import { cn } from '@/lib/utils.ts';
 import { ModeToggle } from '@/components/ModeToggle.tsx';
 import { CONFIG } from '@/config.ts';
+import { GiHamburgerMenu } from 'react-icons/gi';
 
 const Waffle = () => {
     const links = [
@@ -153,10 +154,10 @@ const Header = () => {
                         className="flex items-center space-x-2 md:hidden"
                         onClick={() => setShowMobileMenu(!showMobileMenu)}
                     >
-                        {showMobileMenu ? <FaX /> : <Logo />}
-                        <span className="font-bold">Menu</span>
+                        <Logo />
+                        {showMobileMenu ? <FaX /> : <GiHamburgerMenu />}
                     </button>
-                    {showMobileMenu && <MobileNav />}
+                    {showMobileMenu && <MobileNav onClose={() => setShowMobileMenu(false)} />}
                 </div>
 
                 <div className={'flex items-center space-x-2'}>
@@ -189,9 +190,6 @@ const Header = () => {
                             <DropdownMenuSeparator />
                             <DropdownMenuItem asChild>
                                 <Link to="/">Dashboard</Link>
-                            </DropdownMenuItem>
-                            <DropdownMenuItem asChild>
-                                <Link to="/settings">Settings</Link>
                             </DropdownMenuItem>
                             <DropdownMenuSeparator />
                             <DropdownMenuItem
