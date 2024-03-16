@@ -16,6 +16,7 @@ WORKDIR /app
 COPY package.json yarn.lock .yarnrc.yml vite.config.ts tsconfig.json tsconfig.node.json index.html tailwind.config.ts postcss.config.js ./
 COPY .yarn/releases/ ./.yarn/releases/
 COPY src/ ./src/
+COPY public/ ./public/
 
 RUN yarn install
 RUN yarn run build
