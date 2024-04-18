@@ -85,7 +85,7 @@ export const getRelativeDateAndTime = (date: string | Date) => {
 };
 
 export const Str = {
-    headline: (str: string) => {
+    headline: (str?: string) => {
         if (!str) return '';
 
         str = str.replaceAll('_', ' ').replaceAll('-', ' ');

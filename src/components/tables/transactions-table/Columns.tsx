@@ -14,8 +14,8 @@ export const columns: ColumnDef<Transaction>[] = [
         cell: ({ row: { original: t } }) => {
             if (typeof t.merchant !== 'number') {
                 return (
-                    <Link to={`/merchants/${t.merchant.id}`} className={'underline'}>
-                        {Str.headline(t.merchant.business_name)}
+                    <Link to={`/merchants/${t.merchant?.id}`} className={'underline'}>
+                        {Str.headline(t.merchant?.business_name)}
                     </Link>
                 );
             }

@@ -26,9 +26,6 @@ export const Middleware = {
         if (!token) return <Navigate to="/login" state={{ from: location }} replace />;
 
         const user = decodeJWT(token);
-        const expiresIn = moment.unix(user.exp).diff(moment(), 'minutes');
-
-        console.info(`Session expires in: ${expiresIn} minutes`);
 
         if (moment.unix(user.exp).isBefore(moment())) {
             dispatch(logout());

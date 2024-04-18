@@ -3,18 +3,32 @@ import { columns } from '@/components/tables/transactions-table/Columns.tsx';
 import { Transaction } from '@/lib/types.ts';
 import { Status } from '@/lib/enums.ts';
 import { getStatusIcon, getUniquePropertyValues } from '@/lib/utils.ts';
+import { useGetMerchantsQuery, useGetMpesaStoresQuery } from '@/services/merchantsApi.ts';
 
 type TransactionsTableProps = { title?: string; transactions: Transaction[]; hideMerchantCol?: boolean };
+
 const TransactionsTable = ({
     title = 'Transactions',
     transactions,
     hideMerchantCol = false,
 }: TransactionsTableProps) => {
+    const { data: merchants } = useGetMerchantsQuery();
+    const { data: stores } = useGetMpesaStoresQuery();
+
     let cols = columns;
 
     if (hideMerchantCol) {
         cols = cols.filter((c) => c.header !== 'Merchant');
     }
+
+    transactions = transactions.map((t) => {
+        const merchant = merchants?.find((m) => m.id === t.merchant);
+        const store = stores?.find(
+            (s) => s.agent === t.payment?.destination?.agent && s.store === t.payment?.destination?.store
+        );
+
+        return { ...t, merchant, destination: store?.name || t.destination };
+    });
 
     return (
         <DataTable

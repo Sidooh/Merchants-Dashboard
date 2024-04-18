@@ -4,7 +4,7 @@ import TransactionsTable from '@/components/tables/transactions-table/Transactio
 import { useGetTransactionsQuery } from '@/services/transactionsApi.ts';
 import { Skeleton } from '@/components/ui/skeleton.tsx';
 import MpesaStoresTable from '@/components/tables/mpesa-stores-table/MpesaStoresTable.tsx';
-import { useGetMpesaStoresQuery } from '@/services/merchantsApi.ts';
+import { useGetMerchantMpesaStoresQuery } from '@/services/merchantsApi.ts';
 import { useGetEarningAccountsByMerchantQuery } from '@/services/earningAccountsApi.ts';
 import { Card, CardContent, CardDescription, CardHeader } from '@/components/ui/card.tsx';
 import CountUp from 'react-countup';
@@ -18,7 +18,7 @@ const Transactions = ({ merchantId }: { merchantId: number }) => {
 };
 
 const MpesaStores = ({ merchantId }: { merchantId: number }) => {
-    const { data } = useGetMpesaStoresQuery(merchantId);
+    const { data } = useGetMerchantMpesaStoresQuery(merchantId);
 
     if (!data) return <Skeleton className={'h-[500px]'} />;
 
