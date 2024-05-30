@@ -5,7 +5,7 @@ import { CONFIG } from '@/config.ts';
 import { IMAGES } from '@/constants/images';
 
 const GuestLayout = () => (
-    <div className={'flex justify-center items-center min-h-screen  p-6'}>
+    <div className={'flex justify-center items-center min-h-screen p-6'}>
         <div className={'flex items-center justify-center mb-4 flex-col relative'}>
             <img
                 className="hidden lg:block absolute end-[-8.75rem] top-[-5.125rem]"

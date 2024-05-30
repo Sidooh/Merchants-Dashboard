@@ -3,20 +3,30 @@ import { Button } from '@/components/ui/button.tsx';
 import { Cross2Icon } from '@radix-ui/react-icons';
 import { Table } from '@tanstack/react-table';
 import { FacetedFilterType } from '@/lib/types.ts';
-import { ReactNode } from 'react';
+import { Dispatch, ReactNode, SetStateAction } from 'react';
 import { DataTableViewOptions } from '@/components/datatable/DataTableViewOptions.tsx';
+import Tooltip from '@/components/common/Tooltip.tsx';
+import { MdFilterAlt, MdFilterAltOff } from 'react-icons/md';
 
 interface DataTableToolbarProps<TData> {
     table: Table<TData>;
     globalFilter: ReactNode;
     facetedFilters?: FacetedFilterType[];
+    filtering: boolean;
+    setFiltering: Dispatch<SetStateAction<boolean>>;
 }
 
-export function DataTableToolbar<TData>({ table, facetedFilters, globalFilter }: DataTableToolbarProps<TData>) {
+export function DataTableToolbar<TData>({
+    table,
+    facetedFilters,
+    filtering,
+    setFiltering,
+    globalFilter,
+}: DataTableToolbarProps<TData>) {
     const isFiltered = table.getState().columnFilters.length > 0;
 
     return (
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-1">
             <div className="flex flex-1 items-center space-x-2">
                 {globalFilter}
 
@@ -38,6 +48,16 @@ export function DataTableToolbar<TData>({ table, facetedFilters, globalFilter }:
                     </Button>
                 )}
             </div>
+            <Tooltip title={'Filter columns'} asChild>
+                <Button
+                    variant="outline"
+                    size="icon"
+                    className="ml-auto hidden lg:flex rounded-full text-yellow-500"
+                    onClick={() => setFiltering(!filtering)}
+                >
+                    {filtering ? <MdFilterAltOff /> : <MdFilterAlt />}
+                </Button>
+            </Tooltip>
             <DataTableViewOptions table={table} />
         </div>
     );

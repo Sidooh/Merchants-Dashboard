@@ -1,5 +1,5 @@
 import { Tooltip as BaseTooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip.tsx';
-import { ReactNode } from 'react';
+import { forwardRef, ReactNode } from 'react';
 
 type TooltipProps = {
     children: ReactNode;
@@ -8,15 +8,17 @@ type TooltipProps = {
     placement?: 'top' | 'left' | 'bottom' | 'right';
 };
 
-const Tooltip = ({ children, title, placement, asChild = false }: TooltipProps) => {
-    return (
-        <TooltipProvider>
-            <BaseTooltip>
-                <TooltipTrigger asChild={asChild}>{children}</TooltipTrigger>
-                <TooltipContent side={placement}>{title}</TooltipContent>
-            </BaseTooltip>
-        </TooltipProvider>
-    );
-};
+const Tooltip = forwardRef<HTMLButtonElement, TooltipProps>(({ children, title, placement, asChild = false }, ref) => (
+    <TooltipProvider>
+        <BaseTooltip>
+            <TooltipTrigger ref={ref} asChild={asChild}>
+                {children}
+            </TooltipTrigger>
+            <TooltipContent side={placement}>{title}</TooltipContent>
+        </BaseTooltip>
+    </TooltipProvider>
+));
+
+Tooltip.displayName = 'Tooltip';
 
 export default Tooltip;

@@ -7,14 +7,13 @@ import { Input } from '@/components/ui/input';
 import { login, reset } from '@/features/auth/authSlice';
 import { useAppDispatch } from '@/app/store';
 import * as yup from 'yup';
-import { Button } from '@/components/ui/button';
-import { ReloadIcon } from '@radix-ui/react-icons';
 import { AiOutlineLogin } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { useEffect } from 'react';
 import { toast } from '@/lib/utils';
 import { CONFIG } from '@/config';
+import SubmitButton from '@/components/common/SubmitButton.tsx';
 
 const formSchema = yup.object({
     email: yup.string().max(100).required('Email is required.'),
@@ -44,8 +43,8 @@ const Login = () => {
 
     return (
         <Form {...form}>
-            <form className="w-full" onSubmit={form.handleSubmit(handleSubmit)}>
-                <Card className={'p-5 h-full lg:max-w-3xl lg:min-w-[30rem] relative shadow-xl border-0'}>
+            <form onSubmit={form.handleSubmit(handleSubmit)}>
+                <Card className={'lg:p-5 lg:max-w-3xl lg:min-w-[30rem] relative shadow-xl border-0'}>
                     <CardHeader>
                         <CardTitle className={'text-end text-primary'}>
                             Welcome Back
@@ -53,7 +52,7 @@ const Login = () => {
                         </CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <div className="space-y-5">
+                        <div className="space-y-3">
                             <FormField
                                 control={form.control}
                                 name="email"
@@ -85,17 +84,14 @@ const Login = () => {
                         </div>
                     </CardContent>
                     <CardFooter className={'flex-col'}>
-                        <Button type={'submit'} disabled={isLoading} className={'w-full bg-primary'}>
-                            {isLoading ? (
-                                <>
-                                    Authenticating... <ReloadIcon className="ms-2 h-4 w-4 animate-spin" />
-                                </>
-                            ) : (
-                                <>
-                                    Sign In <AiOutlineLogin className="ms-2 h-4 w-4" />
-                                </>
-                            )}
-                        </Button>
+                        <SubmitButton
+                            className={'w-full'}
+                            text={'Sign In'}
+                            isLoading={isLoading}
+                            loadingText={'Signing In...'}
+                            disabled={isLoading || !form.formState.isValid}
+                            icon={AiOutlineLogin}
+                        />
 
                         <div className={'mt-5'}>
                             <div className="relative mt-4">

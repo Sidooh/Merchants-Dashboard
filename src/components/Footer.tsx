@@ -10,10 +10,10 @@ const Footer = () => {
                     <a href="/" className={'text-primary'}>
                         Sidooh
                     </a>{' '}
-                    <br className="sm:hidden" /> &copy; {new Date().getFullYear()}
+                    &copy; {new Date().getFullYear()}
                 </p>
                 <p className="mb-0 text-600">
-                    v{CONFIG.app.version} | {moment().format('dddd, Do MMMM')}
+                    v{CONFIG.app.version} | {moment().format('D.M.y')}
                 </p>
             </div>
         </footer>

@@ -24,6 +24,7 @@ import { FacetedFilterType } from '@/lib/types.ts';
 import { Input } from '@/components/ui/input.tsx';
 import { rankItem } from '@tanstack/match-sorter-utils';
 import { Checkbox } from '@/components/ui/checkbox.tsx';
+import DataTableColumnFilter from '@/components/datatable/DataTableColumnFilter.tsx';
 
 interface DataTableProps<TData, TValue> {
     title?: string;
@@ -37,6 +38,7 @@ export function DataTable<TData, TValue>({ title, columns, data, facetedFilters 
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
     const [globalFilter, setGlobalFilter] = useState('');
     const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
+    const [filtering, setFiltering] = useState<boolean>(false);
 
     const fuzzyFilter: FilterFn<TData> = (row, columnId, value, addMeta) => {
         // Rank the item
@@ -111,6 +113,8 @@ export function DataTable<TData, TValue>({ title, columns, data, facetedFilters 
             <DataTableToolbar
                 table={table}
                 facetedFilters={facetedFilters}
+                filtering={filtering}
+                setFiltering={setFiltering}
                 globalFilter={
                     <Input
                         type={'search'}
@@ -129,21 +133,27 @@ export function DataTable<TData, TValue>({ title, columns, data, facetedFilters 
                             {headerGroup.headers.map((header) => (
                                 <TableHead key={header.id}>
                                     {!header.isPlaceholder && (
-                                        <div
-                                            className="flex items-center -ml-4 h-8 px-3 data-[state=open]:bg-accent text-secondary-foreground hover:bg-secondary/80 cursor-pointer"
-                                            onClick={header.column.getToggleSortingHandler()}
-                                        >
-                                            <span className={'font-bold text-xs md:text-sm'}>
-                                                {flexRender(header.column.columnDef.header, header.getContext())}
-                                            </span>
-                                            {header.column.getCanSort() &&
-                                                ({
-                                                    asc: <CaretUpIcon className="ml-2 h-4 w-4" />,
-                                                    desc: <CaretDownIcon className="ml-2 h-4 w-4" />,
-                                                }[header.column.getIsSorted() as string] ?? (
-                                                    <CaretSortIcon className="ml-2 h-4 w-4" />
-                                                ))}
-                                        </div>
+                                        <>
+                                            <div
+                                                className="flex items-center -ml-4 h-8 px-3 data-[state=open]:bg-accent text-secondary-foreground hover:bg-secondary/80 cursor-pointer"
+                                                onClick={header.column.getToggleSortingHandler()}
+                                            >
+                                                <span className={'font-bold text-xs md:text-sm'}>
+                                                    {flexRender(header.column.columnDef.header, header.getContext())}
+                                                </span>
+                                                {header.column.getCanSort() &&
+                                                    ({
+                                                        asc: <CaretUpIcon className="ml-2 h-4 w-4" />,
+                                                        desc: <CaretDownIcon className="ml-2 h-4 w-4" />,
+                                                    }[header.column.getIsSorted() as string] ?? (
+                                                        <CaretSortIcon className="ml-2 h-4 w-4" />
+                                                    ))}
+                                            </div>
+
+                                            {filtering && header.column.getCanFilter() && (
+                                                <DataTableColumnFilter table={table} column={header.column} />
+                                            )}
+                                        </>
                                     )}
                                 </TableHead>
                             ))}

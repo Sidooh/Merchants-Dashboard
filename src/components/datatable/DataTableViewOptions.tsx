@@ -11,6 +11,7 @@ import {
     DropdownMenuSeparator,
 } from '@/components/ui/dropdown-menu';
 import { Str } from '@/lib/utils.ts';
+import Tooltip from '@/components/common/Tooltip.tsx';
 
 interface DataTableViewOptionsProps<TData> {
     table: Table<TData>;
@@ -19,12 +20,13 @@ interface DataTableViewOptionsProps<TData> {
 export function DataTableViewOptions<TData>({ table }: DataTableViewOptionsProps<TData>) {
     return (
         <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="sm" className="ml-auto hidden h-8 lg:flex">
-                    <MixerHorizontalIcon className="mr-2 h-4 w-4" />
-                    View
-                </Button>
-            </DropdownMenuTrigger>
+            <Tooltip title={'Filter columns'} asChild>
+                <DropdownMenuTrigger asChild>
+                    <Button variant="outline" size="icon" className="ml-auto hidden lg:flex rounded-full">
+                        <MixerHorizontalIcon />
+                    </Button>
+                </DropdownMenuTrigger>
+            </Tooltip>
             <DropdownMenuContent align="end" className="w-[150px]">
                 <DropdownMenuLabel>Toggle columns</DropdownMenuLabel>
                 <DropdownMenuSeparator />
