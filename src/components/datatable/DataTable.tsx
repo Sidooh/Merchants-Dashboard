@@ -163,7 +163,11 @@ export function DataTable<TData, TValue>({ title, columns, data, facetedFilters 
                 <TableBody>
                     {table.getRowModel().rows?.length ? (
                         table.getRowModel().rows.map((row) => (
-                            <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
+                            <TableRow
+                                key={row.id}
+                                data-state={row.getIsSelected() && 'selected'}
+                                className={'border-muted'}
+                            >
                                 {row.getVisibleCells().map((cell) => (
                                     <TableCell key={cell.id} className={'text-xs md:text-sm'}>
                                         {flexRender(cell.column.columnDef.cell, cell.getContext())}

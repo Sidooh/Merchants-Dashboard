@@ -41,15 +41,6 @@ export const toast = async (options: SweetAlertOptions = {}) => {
     await Swal.fire(mergedOptions);
 };
 
-export const getItemFromStore = (key: string, defaultValue?: string | boolean, store = localStorage) => {
-    try {
-        return JSON.parse(String(store.getItem(key))) || defaultValue;
-    } catch {
-        return store.getItem(key) || defaultValue;
-    }
-};
-export const setItemToStore = (key: string, payload: string, store = localStorage) => store.setItem(key, payload);
-
 export const currencyFormat = (number?: number, currency = 'KES', decimals = 2): string => {
     const n = Number(number);
 

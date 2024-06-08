@@ -52,7 +52,7 @@ export function DataTableToolbar<TData>({
                 <Button
                     variant="outline"
                     size="icon"
-                    className="ml-auto hidden lg:flex rounded-full text-yellow-500"
+                    className="ml-auto hidden lg:flex rounded-full text-yellow-500 hover:text-yellow-500 hover:bg-yellow-500/10"
                     onClick={() => setFiltering(!filtering)}
                 >
                     {filtering ? <MdFilterAltOff /> : <MdFilterAlt />}
