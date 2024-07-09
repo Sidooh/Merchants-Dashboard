@@ -10,7 +10,8 @@ const calcLatency = (from: Date | string, to: Date | string) => Math.abs(moment(
 
 const Latency = ({ from, to }: LatencyProps) => {
     let unit = 's',
-        latency = calcLatency(from, to);
+        latInSec = calcLatency(from, to),
+        latency = latInSec;
 
     if (latency > 86400) {
         unit = 'd';
@@ -26,12 +27,13 @@ const Latency = ({ from, to }: LatencyProps) => {
     return (
         <span
             className={cn(`font-bold`, {
-                'text-red-600': latency > 30,
-                'text-yellow-500': latency > 7 && latency <= 30,
-                'text-[rgb(100,250,50)]': latency <= 7,
+                'text-red-600': latInSec > 30,
+                'text-yellow-500': latInSec > 7 && latInSec <= 30,
+                'text-[rgb(100,250,50)]': latInSec <= 7,
             })}
         >
-            {Math.round(latency)} {unit}
+            {Math.round(latency)}
+            {unit}
         </span>
     );
 };
