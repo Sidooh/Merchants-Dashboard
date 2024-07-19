@@ -118,7 +118,7 @@ export function DataTable<TData, TValue>({ title, columns, data, facetedFilters 
                 globalFilter={
                     <Input
                         type={'search'}
-                        placeholder={'Filter columns...'}
+                        placeholder={'Search table...'}
                         value={globalFilter ?? ''}
                         onChange={(e) => setGlobalFilter(e.target.value)}
                         className="h-8 w-[150px] lg:w-[250px]"

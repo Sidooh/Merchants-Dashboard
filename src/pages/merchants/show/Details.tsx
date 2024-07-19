@@ -21,8 +21,8 @@ const Details = ({ id }: DetailsProps) => {
                 <CardTitle>Merchant Details</CardTitle>
             </CardHeader>
             <CardContent>
-                <div className="flex h-5 items-center justify-evenly space-x-4 text-sm">
-                    <div className={'space-y-2'}>
+                <div className="flex flex-col justify-evenly gap-y-1 lg:flex-row lg:h-12 lg:items-center lg:space-x-4 text-sm">
+                    <div>
                         <h3 className={'text-muted-foreground'}>Name</h3>
                         <Link
                             to={`${CONFIG.services.accounts.dashboard.url}/${merchant.account_id}`}
@@ -34,22 +34,22 @@ const Details = ({ id }: DetailsProps) => {
                         </Link>
                     </div>
                     <Separator orientation="vertical" />
-                    <div className={'space-y-2'}>
+                    <div>
                         <h3 className={'text-muted-foreground'}>Business Name</h3>
                         <p>{merchant.business_name}</p>
                     </div>
                     <Separator orientation="vertical" />
-                    <div className={'space-y-2'}>
+                    <div>
                         <h3 className={'text-muted-foreground'}>Phone</h3>
                         <p>{merchant.phone}</p>
                     </div>
                     <Separator orientation="vertical" />
-                    <div className={'space-y-2'}>
+                    <div>
                         <h3 className={'text-muted-foreground'}>National ID</h3>
                         <p>{merchant.id_number}</p>
                     </div>
                     <Separator orientation="vertical" />
-                    <div className={'space-y-2'}>
+                    <div>
                         <h3 className={'text-muted-foreground'}>Code</h3>
                         <p>{merchant.code}</p>
                     </div>

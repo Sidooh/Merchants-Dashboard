@@ -19,7 +19,7 @@ const Latency = ({ from, to }: LatencyProps) => {
     } else if (latency > 3600) {
         unit = 'hrs';
         latency = latency / 3600;
-    } else if (latency > 120) {
+    } else if (latency > 75) {
         unit = 'min';
         latency = latency / 60;
     }

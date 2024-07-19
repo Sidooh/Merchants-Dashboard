@@ -31,6 +31,7 @@ export const columns: ColumnDef<Transaction>[] = [
             </span>
         ),
         accessorFn: (originalRow) => `${originalRow.description} ${originalRow.destination}`,
+        filterFn: (row, _, value) => value.includes(row.original.description),
     },
     {
         accessorKey: 'amount',

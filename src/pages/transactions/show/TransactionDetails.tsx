@@ -30,10 +30,10 @@ const TransactionDetails = () => {
                         Latency <Latency from={transaction.created_at} to={transaction.updated_at} />
                     </span>
                 </CardHeader>
-                <Separator className={'w-1/2 mx-auto h-[1px] md:mb-7'} />
+                <Separator className={'w-1/2 mx-auto h-[1px] mb-2 md:mb-7'} />
                 <CardContent>
-                    <div className="flex h-12 items-center justify-between space-x-4 text-sm">
-                        <div className={'flex flex-col'}>
+                    <div className="flex flex-col justify-evenly gap-y-1 lg:flex-row lg:h-12 lg:items-center lg:space-x-4 text-sm">
+                        <div className={'flex flex-col items-start'}>
                             <small className={'text-muted-foreground'}>Status</small>
                             <StatusBadge
                                 status={transaction.status}
@@ -71,7 +71,7 @@ const TransactionDetails = () => {
                 </CardHeader>
                 <CardContent>
                     {transaction.payment ? (
-                        <div className="flex h-20 items-center justify-between space-x-4 text-sm">
+                        <div className="flex flex-col justify-evenly gap-y-2 lg:flex-row lg:h-20 lg:items-center lg:space-x-4 text-sm">
                             {transaction.payment.description && (
                                 <>
                                     <div>

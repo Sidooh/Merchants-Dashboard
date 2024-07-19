@@ -48,7 +48,7 @@ export function DataTableToolbar<TData>({
                     </Button>
                 )}
             </div>
-            <Tooltip title={'Filter columns'} asChild>
+            <Tooltip title={'Search table'} asChild>
                 <Button
                     variant="outline"
                     size="icon"

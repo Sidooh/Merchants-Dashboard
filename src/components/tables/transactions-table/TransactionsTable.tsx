@@ -1,7 +1,7 @@
 import { DataTable } from '@/components/datatable/DataTable.tsx';
 import { columns } from '@/components/tables/transactions-table/Columns.tsx';
 import { Transaction } from '@/lib/types.ts';
-import { Status } from '@/lib/enums.ts';
+import { Description, Status } from '@/lib/enums.ts';
 import { getStatusIcon, getUniquePropertyValues } from '@/lib/utils.ts';
 import { useGetMerchantsQuery, useGetMpesaStoresQuery } from '@/services/merchantsApi.ts';
 
@@ -36,14 +36,15 @@ const TransactionsTable = ({
             columns={cols}
             data={transactions}
             facetedFilters={[
-                /*{
-                    column_id: 'product',
-                    title: 'Product',
+                {
+                    column_id: 'description',
+                    title: 'Description',
                     options: [
-                        { label: 'Withdraw', value: 'WITHDRAWAL', icon: BiMoneyWithdraw },
-                        { label: 'Float', value: 'FLOAT', icon: PiLifebuoyDuotone },
-                    ],
-                },*/
+                        Description.MPESA_FLOAT_PURCHASE,
+                        Description.VOUCHER_TOP_UP,
+                        Description.VOUCHER_TRANSFER,
+                    ].map((d) => ({ label: d, value: d })),
+                },
                 {
                     column_id: 'status',
                     title: 'Status',

@@ -20,7 +20,7 @@ interface DataTableViewOptionsProps<TData> {
 export function DataTableViewOptions<TData>({ table }: DataTableViewOptionsProps<TData>) {
     return (
         <DropdownMenu>
-            <Tooltip title={'Filter columns'} asChild>
+            <Tooltip title={'Search table'} asChild>
                 <DropdownMenuTrigger asChild>
                     <Button variant="outline" size="icon" className="ml-auto hidden lg:flex rounded-full">
                         <MixerHorizontalIcon />

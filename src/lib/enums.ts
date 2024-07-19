@@ -13,3 +13,9 @@ export enum EarningAccountType {
     CASHBACK = 'CASHBACK',
     COMMISSION = 'COMMISSION',
 }
+
+export enum Description {
+    MPESA_FLOAT_PURCHASE = 'Mpesa Float Purchase',
+    VOUCHER_TOP_UP = 'Voucher Top Up',
+    VOUCHER_TRANSFER = 'Voucher Transfer',
+}
