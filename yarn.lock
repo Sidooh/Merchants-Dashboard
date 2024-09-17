@@ -4625,7 +4625,7 @@ __metadata:
     tailwindcss: "npm:^3.4.3"
     tailwindcss-animate: "npm:^1.0.7"
     typescript: "npm:^5.4.5"
-    vite: "npm:5.2.12"
+    vite: "npm:5.2.14"
     yup: "npm:^1.4.0"
   languageName: unknown
   linkType: soft
@@ -6617,9 +6617,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:5.2.12":
-  version: 5.2.12
-  resolution: "vite@npm:5.2.12"
+"vite@npm:5.2.14":
+  version: 5.2.14
+  resolution: "vite@npm:5.2.14"
   dependencies:
     esbuild: "npm:^0.20.1"
     fsevents: "npm:~2.3.3"
@@ -6653,7 +6653,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 10/c27d3efff93016e8171b6a362f605ad5f78e24086292987097ad4a7382ae78d9e0659065976a13bf7b51ba0f593d675579010692097ef36d8a5cc965f3efec4c
+  checksum: 10/a0e29673c9da6d42c03aeebfee56e164132d26f4777de76562f6588d6c6d28495d3a9885da7ad912b6f34d26ba4cabd5b2d17d06600aeb11f681d4cb7bc30e56
   languageName: node
   linkType: hard
 
